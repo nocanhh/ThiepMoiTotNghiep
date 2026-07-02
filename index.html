@@ -1,0 +1,1033 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Lễ Tốt Nghiệp - Thư Mời Điện Tử</title>
+    <link rel="icon" href="images/PROFILE.jpg" type="image/jpeg">
+    <link rel="shortcut icon" href="images/PROFILE.jpg" type="image/jpeg">
+    <!-- Google Fonts for luxurious typography -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,600;0,700;1,400&family=Playfair+Display:ital,wght@0,600;1,600&family=Montserrat:wght@300;400;500&display=swap" rel="stylesheet">
+    
+    <style>
+        :root {
+            --pink-pastel: #FFF0F2;
+            --pink-medium: #FBCDCB;
+            --pink-dark: #E59A9A;
+            --gold-rose: #D4AF37;
+            --gold-light: #F3E5AB;
+            --text-dark: #4A3E3D;
+            --text-muted: #7D6B6A;
+            --ivory: #FFFDFB;
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            font-family: 'Cormorant Garamond', serif;
+            background-color: var(--pink-pastel);
+            color: var(--text-dark);
+            overflow-x: hidden;
+            -webkit-font-smoothing: antialiased;
+            font-variant-numeric: lining-nums;
+        }
+
+        /* --- TẦNG 0: MÀN HÌNH KHÓA PHONG BÌ --- */
+        #envelope-wrapper {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100vw;
+            height: 100vh;
+            background-color: #FFEAEB;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            z-index: 9999;
+            transition: transform 1s cubic-bezier(0.77, 0, 0.175, 1), opacity 1s ease;
+        }
+
+        .envelope {
+            position: relative;
+            width: 340px;
+            height: 480px;
+            background: var(--ivory);
+            border-radius: 8px;
+            box-shadow: 0 20px 40px rgba(229,154,154,0.3);
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            padding: 30px;
+            border: 2px solid rgba(212,175,55,0.2);
+            text-align: center;
+        }
+
+        .envelope-border {
+            position: absolute;
+            top: 10px;
+            left: 10px;
+            right: 10px;
+            bottom: 10px;
+            border: 1px solid rgba(212,175,55,0.4);
+            pointer-events: none;
+        }
+
+        .wax-seal {
+            width: 80px;
+            height: 80px;
+            background: radial-gradient(circle, #E59A9A 0%, #C27D7D 100%);
+            border-radius: 50%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            color: var(--ivory);
+            font-family: 'Playfair Display', serif;
+            font-size: 24px;
+            font-weight: bold;
+            box-shadow: 0 6px 15px rgba(194,125,125,0.5), inset 0 2px 4px rgba(255,255,255,0.4);
+            cursor: pointer;
+            margin-top: 40px;
+            position: relative;
+            animation: pulse 2s infinite;
+            border: 2px solid rgba(255,255,255,0.2);
+        }
+
+        @keyframes pulse {
+            0% { transform: scale(1); box-shadow: 0 6px 15px rgba(194,125,125,0.5); }
+            50% { transform: scale(1.06); box-shadow: 0 10px 25px rgba(194,125,125,0.7); }
+            100% { transform: scale(1); box-shadow: 0 6px 15px rgba(194,125,125,0.5); }
+        }
+
+        .envelope h2 {
+            font-family: 'Playfair Display', serif;
+            font-size: 22px;
+            margin-bottom: 15px;
+            letter-spacing: 2px;
+            color: var(--text-dark);
+        }
+
+        .envelope p {
+            font-size: 16px;
+            color: var(--text-muted);
+            font-style: italic;
+        }
+
+        /* --- TẦNG NỘI DUNG CHÍNH --- */
+        #main-content {
+            opacity: 0;
+            visibility: hidden;
+            transition: opacity 1.5s ease;
+            max-width: 500px;
+            margin: 0 auto;
+            background: var(--ivory);
+            box-shadow: 0 0 30px rgba(0,0,0,0.05);
+            padding-bottom: 80px; /* Space for bottom nav */
+        }
+
+        .section {
+            padding: 60px 25px;
+            text-align: center;
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            position: relative;
+            border-bottom: 1px solid rgba(229,154,154,0.15);
+        }
+
+        #sec-invitation > * {
+            opacity: 0;
+        }
+
+        /* Tạo hiệu ứng xuất hiện từ từ cho các nội dung trong thư mời */
+        #main-content.visible #sec-invitation > * {
+            animation: fadeInUp 1.2s ease-out forwards;
+        }
+
+        /* Chia thời gian xuất hiện (delay) để các dòng hiện tuần tự từ trên xuống dưới */
+        #main-content.visible #sec-invitation .subtitle-top { animation-delay: 0.2s; }
+        #main-content.visible #sec-invitation .main-title { animation-delay: 0.5s; }
+        #main-content.visible #sec-invitation p { animation-delay: 0.8s; } /* Dòng trích dẫn "Thước phim cuối cùng" */
+        #main-content.visible #sec-invitation .name-gradient { animation-delay: 1.1s; }
+        #main-content.visible #sec-invitation .info-text { animation-delay: 1.4s; }
+        #main-content.visible #sec-invitation .divider { animation-delay: 1.6s; }
+
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(25px); /* Trượt nhẹ từ dưới lên */
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        /* --- CÁC HỌA TIẾT SANG TRỌNG --- */
+        .decor-corner {
+            position: absolute;
+            width: 40px;
+            height: 40px;
+            border-color: var(--gold-rose);
+            border-style: solid;
+            opacity: 0.6;
+        }
+        .top-left { top: 20px; left: 20px; border-width: 1px 0 0 1px; }
+        .top-right { top: 20px; right: 20px; border-width: 1px 1px 0 0; }
+        .bottom-left { bottom: 20px; left: 20px; border-width: 0 0 1px 1px; }
+        .bottom-right { bottom: 20px; right: 20px; border-width: 0 1px 1px 0; }
+
+        /* --- TYPOGRAPHY & TEXT EFFECTS --- */
+        .subtitle-top {
+            font-family: 'Montserrat', sans-serif;
+            font-size: 10px;
+            letter-spacing: 3px;
+            text-transform: uppercase;
+            color: var(--text-muted);
+            margin-bottom: 25px;
+        }
+
+        .main-title {
+            font-family: 'Playfair Display', serif;
+            font-size: 32px;
+            font-weight: 400;
+            letter-spacing: 4px;
+            color: var(--text-dark);
+            margin-bottom: 10px;
+            text-transform: uppercase;
+        }
+
+        .name-gradient {
+            font-family: 'Playfair Display', serif;
+            font-style: italic;
+            font-size: 30px; /* Hạ từ 42px xuống 30px để tên vừa vặn trên 1 dòng */
+            font-weight: 700;
+            background: linear-gradient(45deg, #B38728, #FBF5B7, #DAA520, #AA771C);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            margin: 20px 0;
+            padding: 5px 0;
+            display: inline-block;
+            white-space: nowrap; /* Ép chữ bắt buộc nằm trên 1 dòng, không tự động xuống hàng */
+        }
+
+        .info-text {
+            font-size: 18px;
+            line-height: 1.8;
+            margin-bottom: 15px;
+            color: var(--text-dark);
+        }
+
+        .divider {
+            width: 60px;
+            height: 1px;
+            background-color: var(--gold-rose);
+            margin: 30px auto;
+            position: relative;
+        }
+        .divider::after {
+            content: '🎓';
+            position: absolute;
+            top: -10px;
+            left: 50%;
+            transform: translateX(-50%);
+            background: var(--ivory);
+            padding: 0 10px;
+            font-size: 12px;
+        }
+
+        /* --- SECTION TRI ÂN --- */
+        .story-box {
+            background-color: var(--pink-pastel);
+            padding: 30px 20px;
+            border-radius: 12px;
+            margin-bottom: 30px;
+            border: 1px dashed rgba(229,154,154,0.4);
+            text-align: justify;
+        }
+        .story-box h3 {
+            font-family: 'Playfair Display', serif;
+            font-size: 22px;
+            text-align: center;
+            margin-bottom: 15px;
+            color: #C27D7D;
+        }
+        .story-box p {
+            font-size: 16px;
+            line-height: 1.7;
+            color: var(--text-dark);
+        }
+
+        /* --- BỘ ĐẾM NGƯỢC (COUNTDOWN) --- */
+        .countdown-container {
+            display: flex;
+            gap: 15px;
+            margin-top: 20px;
+        }
+        .countdown-item {
+            background: #FFEAEB;
+            width: 70px;
+            height: 80px;
+            border-radius: 8px;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.03);
+            border: 1px solid rgba(212,175,55,0.15);
+        }
+        .countdown-value {
+            font-family: 'Montserrat', sans-serif;
+            font-size: 24px;
+            font-weight: 500;
+            color: var(--text-dark);
+        }
+        .countdown-label {
+            font-size: 11px;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            color: var(--text-muted);
+            margin-top: 4px;
+        }
+
+        /* --- ALBUM ẢNH (CAROUSEL) --- */
+        .gallery-container {
+            width: 100%;
+            overflow-x: auto;
+            display: flex;
+            gap: 15px;
+            padding: 20px 5px;
+            scroll-snap-type: x mandatory;
+            scrollbar-width: none;
+        }
+        .gallery-container::-webkit-scrollbar {
+            display: none;
+        }
+        .gallery-item {
+            min-width: 280px;  /* Chiều rộng của ô ảnh */
+            height: 280px;      /* Chiều cao bằng chiều rộng để tạo tỉ lệ 1:1 vuông tuyệt đối */
+            background-color: var(--pink-pastel);
+            border-radius: 12px;
+            scroll-snap-align: center;
+            box-shadow: 0 8px 20px rgba(0,0,0,0.06);
+            border: 4px solid var(--ivory);
+            outline: 1px solid rgba(229,154,154,0.3);
+            overflow: hidden;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            position: relative;
+        }
+        .gallery-item img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+        .gallery-hint {
+            font-size: 14px;
+            color: var(--text-muted);
+            font-style: italic;
+            margin-top: 10px;
+        }
+
+        /* --- BẢN ĐỒ --- */
+        .map-box {
+            width: 100%;
+            height: 240px;
+            border-radius: 12px;
+            overflow: hidden;
+            border: 1px solid var(--pink-medium);
+            margin-top: 20px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.04);
+        }
+
+        /* --- FORM RSVP --- */
+        .rsvp-form {
+            width: 100%;
+            margin-top: 25px;
+            text-align: left;
+        }
+        .form-group {
+            margin-bottom: 20px;
+        }
+        .form-group label {
+            display: block;
+            font-family: 'Montserrat', sans-serif;
+            font-size: 12px;
+            letter-spacing: 1px;
+            margin-bottom: 8px;
+            color: var(--text-dark);
+            text-transform: uppercase;
+        }
+        .form-control {
+            width: 100%;
+            padding: 12px 15px;
+            border: 1px solid var(--pink-medium);
+            background-color: var(--pink-pastel);
+            border-radius: 8px;
+            font-family: inherit;
+            font-size: 16px;
+            color: var(--text-dark);
+            transition: all 0.3s;
+        }
+        .form-control:focus {
+            outline: none;
+            border-color: var(--pink-dark);
+            background-color: var(--ivory);
+        }
+        .radio-group {
+            display: flex;
+            gap: 20px;
+            margin-top: 10px;
+        }
+        .radio-label {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            font-size: 16px;
+            cursor: pointer;
+        }
+        .radio-label input {
+            accent-color: var(--pink-dark);
+        }
+        .btn-submit {
+            width: 100%;
+            padding: 15px;
+            background: linear-gradient(135deg, #E59A9A 0%, #C27D7D 100%);
+            color: var(--ivory);
+            border: none;
+            border-radius: 8px;
+            font-family: 'Montserrat', sans-serif;
+            font-size: 13px;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            font-weight: bold;
+            cursor: pointer;
+            box-shadow: 0 5px 15px rgba(229,154,154,0.4);
+            transition: all 0.3s;
+            margin-top: 10px;
+        }
+        .btn-submit:hover {
+            opacity: 0.9;
+            transform: translateY(-2px);
+        }
+
+        /* --- THANH ĐIỀU HƯỚNG BOTTOM NAV --- */
+        #bottom-nav {
+            position: fixed;
+            bottom: 0;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 100%;
+            max-width: 500px;
+            height: 65px;
+            background-color: rgba(255, 253, 251, 0.95);
+            backdrop-filter: blur(10px);
+            border-top: 1px solid rgba(229,154,154,0.2);
+            display: flex;
+            justify-content: space-around;
+            align-items: center;
+            z-index: 999;
+            box-shadow: 0 -5px 20px rgba(0,0,0,0.04);
+        }
+        .nav-item {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            color: var(--text-muted);
+            text-decoration: none;
+            cursor: pointer;
+            transition: color 0.3s;
+        }
+        .nav-item.active {
+            color: var(--pink-dark);
+        }
+        .nav-icon {
+            font-size: 20px;
+            margin-bottom: 2px;
+        }
+        .nav-label {
+            font-family: 'Montserrat', sans-serif;
+            font-size: 9px;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        /* --- NÚT ĐIỀU KHIỂN NHẠC NỀN --- */
+        #music-control {
+            position: fixed;
+            top: 20px;
+            right: 20px;
+            width: 40px;
+            height: 40px;
+            background: rgba(255, 253, 251, 0.8);
+            border-radius: 50%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            cursor: pointer;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.05);
+            z-index: 1000;
+            border: 1px solid rgba(229,154,154,0.3);
+            display: none; /* Hiện ra sau khi mở phong bì */
+        }
+        .music-playing {
+            animation: rotate 4s linear infinite;
+        }
+        @keyframes rotate {
+            from { transform: rotate(0deg); }
+            to { transform: rotate(360deg); }
+        }
+
+        /* --- CSS HIỆU ỨNG BỤI LẤP LÁNH --- */
+        .sparkles-container,
+        .bubbles-container {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100vw;
+            height: 100vh;
+            pointer-events: none; /* Khách vẫn cuộn và bấm nút bình thường */
+            z-index: 10; /* Nằm phía trên nội dung nhưng dưới thanh nav và phong bì */
+            overflow: hidden;
+        }
+
+        .sparkle {
+            position: absolute;
+            background: radial-gradient(circle, rgba(251,245,183,0.85) 0%, rgba(212,175,55,0) 70%);
+            border-radius: 50%;
+            opacity: 0;
+            filter: blur(0.5px);
+        }
+
+        .bubble {
+            position: absolute;
+            border-radius: 50%;
+            background: rgba(255, 255, 255, 0.35);
+            border: 1px solid rgba(255,255,255,0.8);
+            box-shadow: 0 0 18px rgba(255,255,255,0.6);
+            backdrop-filter: blur(3px);
+            opacity: 0.75;
+            animation: riseBubble linear infinite;
+        }
+
+        .b1 { width: 28px; height: 28px; left: 8%; bottom: -24px; animation-duration: 16s; animation-delay: 0s; }
+        .b2 { width: 22px; height: 22px; left: 55%; bottom: -30px; animation-duration: 14s; animation-delay: 3s; }
+        .b3 { width: 36px; height: 36px; left: 30%; bottom: -28px; animation-duration: 18s; animation-delay: 1s; }
+        .b4 { width: 26px; height: 26px; left: 78%; bottom: -22px; animation-duration: 12s; animation-delay: 5s; }
+        .b5 { width: 20px; height: 20px; left: 42%; bottom: -18px; animation-duration: 20s; animation-delay: 2s; }
+        .b6 { width: 24px; height: 24px; left: 85%; bottom: -28px; animation-duration: 17s; animation-delay: 4s; }
+
+        /* Định vị và cài đặt thời gian chạy của từng hạt ngẫu nhiên */
+        .s1 { width: 8px; height: 8px; top: 20%; left: 15%; animation: floatSparkle 6s infinite ease-in-out; }
+        .s2 { width: 12px; height: 12px; top: 60%; left: 80%; animation: floatSparkle 8s infinite ease-in-out 2s; }
+        .s3 { width: 6px; height: 6px; top: 40%; left: 70%; animation: floatSparkle 5s infinite ease-in-out 1s; }
+        .s4 { width: 10px; height: 10px; top: 80%; left: 25%; animation: floatSparkle 7s infinite ease-in-out 3s; }
+
+        @keyframes floatSparkle {
+            0% { transform: translateY(0) scale(0.8); opacity: 0; }
+            50% { opacity: 0.7; }
+            100% { transform: translateY(-60px) scale(1.2); opacity: 0; }
+        }
+
+        @keyframes riseBubble {
+            0% { transform: translate(0, 0) scale(0.9); opacity: 0; }
+            20% { opacity: 0.55; }
+            50% { transform: translate(18px, -40vh) scale(1); opacity: 0.35; }
+            100% { transform: translate(-10px, -90vh) scale(1.05); opacity: 0; }
+        }
+
+        /* --- THÔNG BÁO MỀM GIỮA MÀN HÌNH --- */
+        #notification-toast {
+            position: fixed;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%) scale(0.95);
+            min-width: 280px;
+            max-width: 90%;
+            padding: 22px 24px;
+            background: rgba(255, 255, 255, 0.98);
+            border: 1px solid rgba(229,154,154,0.3);
+            border-radius: 26px;
+            box-shadow: 0 24px 60px rgba(0,0,0,0.14);
+            opacity: 0;
+            pointer-events: none;
+            z-index: 10002;
+            transition: opacity 0.25s ease, transform 0.25s ease;
+            text-align: center;
+        }
+        #notification-toast.visible {
+            opacity: 1;
+            transform: translate(-50%, -50%) scale(1);
+            pointer-events: auto;
+        }
+        #notification-toast .toast-title {
+            font-size: 18px;
+            font-weight: 700;
+            color: #C27D7D;
+            margin-bottom: 8px;
+        }
+        #notification-toast .toast-message {
+            font-size: 14px;
+            line-height: 1.7;
+            color: var(--text-dark);
+            margin-bottom: 16px;
+        }
+        #notification-toast .toast-close {
+            padding: 10px 20px;
+            border: none;
+            border-radius: 999px;
+            background: linear-gradient(135deg, #E59A9A 0%, #C27D7D 100%);
+            color: #FFF;
+            font-weight: 700;
+            cursor: pointer;
+            transition: transform 0.2s ease;
+        }
+        #notification-toast .toast-close:hover {
+            transform: translateY(-1px);
+        }
+    </style>
+</head>
+<body>
+
+    <!-- NHẠC NỀN (Bạn có thể đổi link src thành bài nhạc Piano/Orchestra yêu thích) -->
+    <audio id="bg-music" src="NeverSayGoodbye.mp3" loop></audio>
+
+    <!-- TẦNG 0: PHONG BÌ BAN ĐẦU -->
+    <div id="envelope-wrapper">
+        <div class="envelope">
+            <div class="envelope-border"></div>
+            <div style="font-size: 32px; margin-bottom: 10px;">✉️</div>
+            <h2>THƯ MỜI THAM DỰ</h2>
+            <p>LỄ TỐT NGHIỆP CỦA NGỌC ANH</p>
+            <div class="wax-seal" onclick="openEnvelope()">N.A</div>
+            <p style="margin-top: 20px; font-size: 12px; letter-spacing: 1px; text-transform: uppercase; color: var(--pink-dark)">Chạm vào con dấu để mở</p>
+        </div>
+    </div>
+
+    <!-- NÚT AUDIO CONTROL -->
+    <div id="music-control" onclick="toggleMusic()">🎵</div>
+
+    <!-- TOÀN BỘ NỘI DUNG CHÍNH (SPA) -->
+    <div id="main-content">
+        
+        <!-- TẦNG 1: THƯ MỜI CHÍNH THỨC -->
+        <section id="sec-invitation" class="section">
+            <div class="decor-corner top-left"></div>
+            <div class="decor-corner top-right"></div>
+            <div class="decor-corner bottom-left"></div>
+            <div class="decor-corner bottom-right"></div>
+
+            <p style="
+                font-family: 'Cormorant Garamond', serif;
+                font-style: italic; 
+                font-size: 15px; 
+                text-transform: none; /* Bắt buộc hiển thị chữ thường, không bị ép viết HOA */
+                color: #C27D7D; 
+                max-width: 85%; 
+                margin: 15px auto 25px auto; 
+                line-height: 1.6; 
+                letter-spacing: 0.5px;
+                text-align: center;
+            ">
+                "Đây là những thước phim cuối cùng của thời sinh viên rực rỡ,<br>hãy đến và cùng tôi lưu giữ khoảnh khắc này nhé!"
+            </p>
+            <h1 class="main-title">Trân trọng kính mời</h1>
+            <p style="font-style: italic; font-size: 18px; margin-top: 10px;">Dự Lễ Tốt Nghiệp của</p>
+            
+            <div class="name-gradient">NGÔ ĐINH NGỌC ANH</div>
+
+            <div class="info-text" style="font-weight: 600; letter-spacing: 1px;">
+                Trường Đại học Khoa học - Đại học Huế<br>
+                <span style="font-weight: 400; font-style: italic; color: var(--text-muted);">Ngành: Công nghệ thông tin</span>
+            </div>
+
+            <div class="divider"></div>
+
+            <div class="subtitle-top" style="color: var(--pink-dark); margin-bottom: 10px;">Thời Gian & Địa Điểm</div>
+            <div class="info-text" style="font-size: 20px; font-weight: 600;">
+                08:30 - 10:30 Sáng | Thứ Bảy, 11/07/2026
+            </div>
+            <div class="info-text" style="font-size: 15px; color: var(--text-muted); margin-top: -10px; font-style: italic;">
+                (Tức ngày 27 tháng 05 âm lịch năm Bính Ngọ)
+            </div>
+
+            <div class="info-text" style="margin-top: 15px;">
+                <strong>Tại Nhà hát Sông Hương</strong><br>
+                <span style="font-size: 15px; color: var(--text-muted);">Địa chỉ: Số 01 Lê Lợi, thành phố Huế</span><br>
+                <span style="font-size: 15px; color: var(--text-muted);">Liên hệ: 0932484332</span>
+            </div>
+        </section>
+
+        <!-- TẦNG 2: CÂU CHUYỆN & TRI ÂN -->
+        <section id="sec-story" class="section" style="background-color: #FFF6F7;">
+            <div class="subtitle-top">Nhìn lại chặng đường đã qua</div>
+            <h2 class="main-title" style="font-size: 26px; margin-bottom: 40px;">Lời Tri Ân</h2>
+
+            <div class="story-box">
+                <h3>Hành Trình & Những Người Đồng Hành</h3>
+                <p>Bốn năm thanh xuân dưới mái trường Đại học Khoa học – Đại học Huế không chỉ là hành trình chinh phục tri thức, mà còn là quãng thời gian giúp tôi trưởng thành và lưu giữ biết bao kỷ niệm đẹp. Mỗi bài giảng, mỗi hoạt động, mỗi lần cùng bạn bè vượt qua những khó khăn đã góp phần tạo nên một thanh xuân mà tôi sẽ luôn trân trọng.</p>
+                <p>Để có được ngày hôm nay, tôi may mắn nhận được sự dìu dắt tận tình của quý thầy cô, cùng sự yêu thương, động viên và đồng hành của gia đình, bạn bè, anh chị và các em. Chính sự quan tâm ấy đã tiếp thêm cho tôi động lực để không ngừng cố gắng trên suốt chặng đường đại học.</p>    
+                <p>Xin chân thành cảm ơn tất cả những người đã xuất hiện trong hành trình tuổi trẻ của tôi. Dù sau này mỗi người sẽ bước trên một con đường riêng, tôi tin rằng những năm tháng dưới mái trường Đại học Khoa học – Đại học Huế sẽ luôn là một phần ký ức đẹp và đáng nhớ nhất trong cuộc đời.</p>
+                <p>Cảm ơn mọi người vì đã góp phần làm nên một thanh xuân thật ý nghĩa. Chúc tất cả chúng ta luôn mạnh khỏe, hạnh phúc và thành công trên chặng đường phía trước. Hẹn gặp mọi người trong ngày lễ tốt nghiệp!</p>
+            </div>
+
+            <div class="story-box">
+                <h3>Gửi Đến Bố Mẹ Kính Yêu</h3>
+                <p> Suốt những năm tháng đại học, điều quý giá nhất con luôn có chính là tình yêu thương và sự hy sinh của ba mẹ. Cảm ơn ba mẹ đã luôn là điểm tựa vững chắc, âm thầm lo lắng và động viên con trên từng chặng đường. Ngày hôm nay, khi con hoàn thành một cột mốc của tuổi trẻ, con biết rằng niềm hạnh phúc này cũng thuộc về ba mẹ. Con sẽ tiếp tục cố gắng để không phụ sự kỳ vọng và tình yêu thương ấy. Con yêu ba mẹ rất nhiều. ❤️</p>
+            </div>
+        </section>
+
+        <!-- TẦNG 3: ĐẾM NGƯỢC & ALBUM -->
+        <section id="sec-album" class="section">
+            <div class="subtitle-top">Đếm ngược thời gian lễ hội</div>
+            <h2 class="main-title" style="font-size: 26px; margin-bottom: 20px;">Thời Gian Đếm Ngược</h2>
+            
+            <!-- Bộ đếm ngược số -->
+            <div class="countdown-container">
+                <div class="countdown-item">
+                    <span class="countdown-value" id="days">00</span>
+                    <span class="countdown-label">Ngày</span>
+                </div>
+                <div class="countdown-item">
+                    <span class="countdown-value" id="hours">00</span>
+                    <span class="countdown-label">Giờ</span>
+                </div>
+                <div class="countdown-item">
+                    <span class="countdown-value" id="minutes">00</span>
+                    <span class="countdown-label">Phút</span>
+                </div>
+                <div class="countdown-item">
+                    <span class="countdown-value" id="seconds">00</span>
+                    <span class="countdown-label">Giây</span>
+                </div>
+            </div>
+
+            <div class="divider" style="margin: 40px 0;"></div>
+
+            <div class="subtitle-top">Khoảnh khắc thanh xuân rực rỡ</div>
+            <h2 class="main-title" style="font-size: 26px; margin-bottom: 10px;">Album Kỷ Niệm</h2>
+            
+            <!-- Khung ảnh trượt ngang mượt mà -->
+            <div class="gallery-container">
+                <div class="gallery-item">
+                    <img src="images/anh1.jpg" alt="Khoảnh khắc kỷ niệm 1">
+                </div>
+                <div class="gallery-item">
+                    <img src="images/anh2.jpg" alt="Khoảnh khắc kỷ niệm 2">
+                </div>
+                <div class="gallery-item">
+                    <img src="images/anh3.jpg" alt="Khoảnh khắc kỷ niệm 3">
+                </div>
+                <div class="gallery-item">
+                    <img src="images/anh4.jpg" alt="Khoảnh khắc kỷ niệm 4">
+                </div>
+                <div class="gallery-item">
+                    <img src="images/anh5.jpg" alt="Khoảnh khắc kỷ niệm 5">
+                </div>
+                <div class="gallery-item">
+                    <img src="images/anh6.jpg" alt="Khoảnh khắc kỷ niệm 6">
+                </div>
+                <div class="gallery-item">
+                    <img src="images/anh7.jpg" alt="Khoảnh khắc kỷ niệm 7">
+                </div>
+                <div class="gallery-item">
+                    <img src="images/anh8.jpg" alt="Khoảnh khắc kỷ niệm 8">
+                </div>
+                <div class="gallery-item">
+                    <img src="images/anh9.jpg" alt="Khoảnh khắc kỷ niệm 9">
+                </div>
+                <div class="gallery-item">
+                    <img src="images/anh10.jpg" alt="Khoảnh khắc kỷ niệm 10">
+                </div>
+                <div class="gallery-item">
+                    <img src="images/anh11.jpg" alt="Khoảnh khắc kỷ niệm 11">
+                </div>
+                <div class="gallery-item">
+                    <img src="images/anh12.jpg" alt="Khoảnh khắc kỷ niệm 11">
+                </div>
+                <div class="gallery-item">
+                    <img src="images/anh13.jpg" alt="Khoảnh khắc kỷ niệm 11">
+                </div>
+                <div class="gallery-item">
+                    <img src="images/anh14.jpg" alt="Khoảnh khắc kỷ niệm 11">
+                </div>
+                <div class="gallery-item">
+                    <img src="images/anh15.jpg" alt="Khoảnh khắc kỷ niệm 11">
+                </div>
+            </div>
+        <div class="gallery-hint">← Vuốt ngang để xem trọn vẹn khoảnh khắc thanh xuân →</div>
+        </section>
+
+        <!-- TẦNG 4: BẢN ĐỒ & RSVP XÁC NHẬN -->
+        <section id="sec-rsvp" class="section" style="background-color: #FFF6F7;">
+            <div class="subtitle-top">Đường đến ngày vui</div>
+            <h2 class="main-title" style="font-size: 26px;">Bản Đồ & Xác Nhận</h2>
+
+            <!-- Nhúng Google Maps (Thay URL src bản đồ trường bạn vào đây) -->
+            <div class="map-box">
+                <iframe 
+                    src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3826.3262309715783!2d107.5747558749637!3d16.459010784278398!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3141a1631ba06b61%3A0x3be8a7faf43b7d6f!2zTmjDoCBow6F0IFPDtG5nIEjGsMahbmc!5e0!3m2!1svi!2s!4v1782840955532!5m2!1svi!2s"
+                    width="100%" height="100%" style="border:0;" allowfullscreen="" loading="lazy">
+                </iframe>
+            </div>
+
+            <div style="margin-top: 25px; font-size: 16px; color: var(--text-dark); line-height: 1.6;">
+                📞 Mọi thắc mắc xin vui lòng liên hệ tân cử nhân qua SĐT:<br>
+                <a href="tel:0932484332" style="color: #C27D7D; text-decoration: none; font-size: 18px;">0932 484 332</a>
+            </div>
+
+            <!-- Form RSVP gửi thẳng về database của bạn hoặc Google Sheets -->
+            <form class="rsvp-form" onsubmit="handleRSVP(event)">
+                <div class="form-group">
+                    <label for="guest-name">Họ và Tên khách mời</label>
+                    <input type="text" id="guest-name" class="form-control" placeholder="Nhập tên của bạn..." required>
+                </div>
+                <div class="form-group">
+                    <label>Khả năng tham dự</label>
+                    <div class="radio-group">
+                        <label class="radio-label">
+                            <input type="radio" name="attendance" value="yes" checked> Sẽ tham dự ✨
+                        </label>
+                        <label class="radio-label">
+                            <input type="radio" name="attendance" value="no"> Rất tiếc không thể đến 🤍
+                        </label>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label for="guest-message">Lời chúc / Nhắn gửi</label>
+                    <textarea id="guest-message" class="form-control" rows="3" placeholder="Gửi lời chúc đến tân cử nhân..."></textarea>
+                </div>
+                <button type="submit" class="btn-submit">Gửi Xác Nhận Tham Dự</button>
+            </form>
+        </section>
+
+    </div>
+
+    <!-- THANH ĐIỀU HƯỚNG CỐ ĐỊNH PHÍA DƯỚI (BOTTOM NAV BAR) -->
+    <div id="bottom-nav">
+        <div class="nav-item active" onclick="scrollToSection('sec-invitation', this)">
+            <span class="nav-icon">✉️</span>
+            <span class="nav-label">Thư Mời</span>
+        </div>
+        <div class="nav-item" onclick="scrollToSection('sec-story', this)">
+            <span class="nav-icon">📜</span>
+            <span class="nav-label">Tri Ân</span>
+        </div>
+        <div class="nav-item" onclick="scrollToSection('sec-album', this)">
+            <span class="nav-icon">📸</span>
+            <span class="nav-label">Kỷ Niệm</span>
+        </div>
+        <div class="nav-item" onclick="scrollToSection('sec-rsvp', this)">
+            <span class="nav-icon">✅</span>
+            <span class="nav-label">Xác Nhận</span>
+        </div>
+    </div>
+    <div id="notification-toast" role="status" aria-live="polite">
+        <div class="toast-title">Thông báo</div>
+        <div class="toast-message">Nội dung thông báo ở đây.</div>
+        <button type="button" class="toast-close" onclick="hideNotification()">Đóng</button>
+    </div>
+
+    <!-- JAVASCRIPT XỬ LÝ SỰ KIỆN TƯƠNG TÁC -->
+    <script>
+        const audio = document.getElementById('bg-music');
+        const musicControl = document.getElementById('music-control');
+
+        // 1. Hàm mở phong bì ban đầu + Phát nhạc
+        function openEnvelope() {
+            const wrapper = document.getElementById('envelope-wrapper');
+            const mainContent = document.getElementById('main-content');
+            
+            // Hiệu ứng đẩy phong bì lên trên và biến mất
+            wrapper.style.transform = 'translateY(-100vh)';
+            wrapper.style.opacity = '0';
+            
+            // Hiển thị trang nội dung chính
+            mainContent.style.visibility = 'visible';
+            mainContent.style.opacity = '1';
+            mainContent.classList.add('visible');
+            
+            // Kích hoạt phát nhạc tự động mượt mà sau tương tác click
+            audio.currentTime = 20;
+            audio.play().then(() => {
+                musicControl.style.display = 'flex';
+                musicControl.classList.add('music-playing');
+            }).catch(err => console.log("Trình duyệt chặn autoplay âm thanh:", err));
+            
+            // Sau khi hiệu ứng hoàn thành, xóa tầng phong bì khỏi DOM để tối ưu cuộn trang
+            setTimeout(() => {
+                wrapper.style.display = 'none';
+            }, 1000);
+        }
+
+        // 2. Bật / Tắt nhạc thủ công
+        function toggleMusic() {
+            if (audio.paused) {
+                audio.play();
+                musicControl.classList.add('music-playing');
+            } else {
+                audio.pause();
+                musicControl.classList.remove('music-playing');
+            }
+        }
+
+        // 3. Hàm cuộn trang mượt mà từ Bottom Nav
+        function scrollToSection(sectionId, element) {
+            const targetSection = document.getElementById(sectionId);
+            if (targetSection) {
+                targetSection.scrollIntoView({ behavior: 'smooth' });
+            }
+            
+            // Thay đổi trạng thái active trên thanh menu
+            document.querySelectorAll('.nav-item').forEach(item => item.classList.remove('active'));
+            element.classList.add('active');
+        }
+
+        // 4. Đồng hồ đếm ngược (Countdown đến 08:30 sáng ngày 11 tháng 7 năm 2026)   
+        const targetDate = new Date("July 11, 2026 08:30:00").getTime();
+
+        const countdownInterval = setInterval(function() {
+            const now = new Date().getTime();
+            const distance = targetDate - now;
+
+            const days = Math.floor(distance / (1000 * 60 * 60 * 24));
+            const hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+            const minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
+            const seconds = Math.floor((distance % (1000 * 60)) / 1000);
+
+            document.getElementById("days").innerText = days < 10 ? "0" + days : days;
+            document.getElementById("hours").innerText = hours < 10 ? "0" + hours : hours;
+            document.getElementById("minutes").innerText = minutes < 10 ? "0" + minutes : minutes;
+            document.getElementById("seconds").innerText = seconds < 10 ? "0" + seconds : seconds;
+
+            // Nếu thời gian đếm ngược kết thúc
+            if (distance < 0) {
+                clearInterval(countdownInterval);
+                document.getElementById("days").innerText = "00";
+                document.getElementById("hours").innerText = "00";
+                document.getElementById("minutes").innerText = "00";
+                document.getElementById("seconds").innerText = "00";
+            }
+        }, 1000);
+
+        // 5. Xử lý sự kiện gửi Form RSVP và lưu vào Google Sheets
+function handleRSVP(event) {
+    event.preventDefault(); // Ngăn trang web bị tải lại
+
+    const name = document.getElementById('guest-name').value;
+    const attendance = document.querySelector('input[name="attendance"]:checked').value;
+    const message = document.getElementById('guest-message').value;
+    
+    // Đổi chữ "yes/no" thành tiếng Việt cho dễ đọc trong Excel
+    const attendanceText = attendance === 'yes' ? 'Sẽ tham dự ✨' : 'Rất tiếc không thể đến 🤍';
+
+    // DỮ LIỆU ĐỂ GỬI ĐI
+    const formData = {
+        name: name,
+        attendance: attendanceText,
+        message: message
+    };
+
+    // ĐỔI THÀNH ĐƯỜNG LINK URL GOOGLE APPS SCRIPT BẠN VỪA COPY Ở BƯỚC 2
+    const scriptURL = 'https://script.google.com/macros/s/AKfycbxl41qdCPtuU003M4qpviWWFnoij1R6IKVUfr-O2kNq2ZffcDCMGvdw7_FcY8LQTvYlfA/exec';
+
+    // Thay đổi chữ trên nút bấm để khách biết hệ thống đang xử lý
+    const submitBtn = event.target.querySelector('.btn-submit');
+    const originalBtnText = submitBtn.innerText;
+    submitBtn.innerText = "ĐANG GỬI XÁC NHẬN...";
+    submitBtn.disabled = true;
+
+    // Gửi data lên Google Sheets bằng Fetch API
+    fetch(scriptURL, {
+        method: 'POST',
+        mode: 'no-cors', // Chế độ an toàn bảo mật xuyên tên miền
+        headers: {
+            'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(formData)
+    })
+    .then(() => {
+        showNotification('Gửi thành công', `Cảm ơn ${name} đã gửi xác nhận tham dự! Lời chúc của bạn đã được lưu lại.`);
+        // Reset form xóa sạch chữ cũ sau khi gửi thành công
+        event.target.reset();
+    })
+    .catch(error => {
+        console.error('Lỗi gửi data:', error);
+        showNotification('Lỗi kết nối', 'Có lỗi xảy ra, vui lòng thử lại sau hoặc gọi trực tiếp cho mình nhé!');
+    })
+    .finally(() => {
+        // Trả lại trạng thái nút ban đầu
+        submitBtn.innerText = originalBtnText;
+        submitBtn.disabled = false;
+    });
+}
+
+        function showNotification(title, message, duration = 4200) {
+            const toast = document.getElementById('notification-toast');
+            toast.querySelector('.toast-title').textContent = title;
+            toast.querySelector('.toast-message').textContent = message;
+            toast.classList.add('visible');
+
+            clearTimeout(toast._hideTimeout);
+            toast._hideTimeout = setTimeout(() => {
+                toast.classList.remove('visible');
+            }, duration);
+        }
+
+        function hideNotification() {
+            const toast = document.getElementById('notification-toast');
+            toast.classList.remove('visible');
+            clearTimeout(toast._hideTimeout);
+        }
+
+        // 6. Tự động đổi nút active trên menu khi người dùng cuộn màn hình
+        window.addEventListener('scroll', () => {
+            const sections = ['sec-invitation', 'sec-story', 'sec-album', 'sec-rsvp'];
+            const navItems = document.querySelectorAll('.nav-item');
+            
+            let currentSection = '';
+            sections.forEach(secId => {
+                const sec = document.getElementById(secId);
+                const rect = sec.getBoundingClientRect();
+                if (rect.top <= window.innerHeight / 2 && rect.bottom >= window.innerHeight / 2) {
+                    currentSection = secId;
+                }
+            });
+
+            if (currentSection) {
+                navItems.forEach((item, index) => {
+                    if (sections[index] === currentSection) {
+                        item.classList.add('active');
+                    } else {
+                        item.classList.remove('active');
+                    }
+                });
+            }
+        });
+    </script>
+    <div class="sparkles-container">
+        <div class="sparkle s1"></div>
+        <div class="sparkle s2"></div>
+        <div class="sparkle s3"></div>
+        <div class="sparkle s4"></div>
+    </div>
+    <div class="bubbles-container">
+        <div class="bubble b1"></div>
+        <div class="bubble b2"></div>
+        <div class="bubble b3"></div>
+        <div class="bubble b4"></div>
+        <div class="bubble b5"></div>
+        <div class="bubble b6"></div>
+    </div>
+
+</body>
+</html>
